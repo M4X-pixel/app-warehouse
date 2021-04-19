@@ -94,29 +94,29 @@ public class AttachmentService {
         return attachmentOptional.get();
     }
 
-    public Result edit(Integer id, MultipartHttpServletRequest request) throws IOException {
-        Iterator<String> fileNames = request.getFileNames();
-        MultipartFile file = request.getFile(fileNames.next());
-        Optional<Attachment> attachmentOptional = attachmentRepository.findById(id);
-        if (!attachmentOptional.isPresent()) return new Result("Attachment not found", false);
-        if (file == null) return new Result("Eror in loading image", false);
-
-        //
-        Optional<AttachmentContent> byAttachment_id = attachmentContentRepository.findByAttachment_id(id);
-        if (!byAttachment_id.isPresent()) return new Result("Error in loading", false);
-
-        Attachment attachment = attachmentOptional.get();
-        attachment.setSize((int) file.getSize());
-        attachment.setOriginalName(file.getOriginalFilename());
-        attachment.setContentType(file.getContentType());
-        Attachment save = attachmentRepository.save(attachment);
-
-
-        //Working with bytes
-        AttachmentContent attachmentContent = byAttachment_id.get();
-        attachmentContent.setAttachment(save);
-        attachmentContent.setBytes(file.getBytes());
-        attachmentContentRepository.save(attachmentContent);
-        return new Result("Successfully edited", true);
-    }
+//    public Result edit(Integer id, MultipartHttpServletRequest request) throws IOException {
+//        Iterator<String> fileNames = request.getFileNames();
+//        MultipartFile file = request.getFile(fileNames.next());
+//        Optional<Attachment> attachmentOptional = attachmentRepository.findById(id);
+//        if (!attachmentOptional.isPresent()) return new Result("Attachment not found", false);
+//        if (file == null) return new Result("Eror in loading image", false);
+//
+//        //
+//        Optional<AttachmentContent> byAttachment_id = attachmentContentRepository.findByAttachment_id(id);
+//        if (!byAttachment_id.isPresent()) return new Result("Error in loading", false);
+//
+//        Attachment attachment = attachmentOptional.get();
+//        attachment.setSize((int) file.getSize());
+//        attachment.setOriginalName(file.getOriginalFilename());
+//        attachment.setContentType(file.getContentType());
+//        Attachment save = attachmentRepository.save(attachment);
+//
+//
+//        //Working with bytes
+//        AttachmentContent attachmentContent = byAttachment_id.get();
+//        attachmentContent.setAttachment(save);
+//        attachmentContent.setBytes(file.getBytes());
+//        attachmentContentRepository.save(attachmentContent);
+//        return new Result("Successfully edited", true);
+//    }
     }

@@ -41,12 +41,12 @@ public class AttachmentController {
         return delete;
     }
 
-    @PutMapping("/{id}")
-    public Result edit(@PathVariable Integer id, MultipartHttpServletRequest request) throws IOException {
-
-        Result edit = attachmentService.edit(id, request);
-        return edit;
-    }
+//    @PutMapping("/{id}")
+//    public Result edit(@PathVariable Integer id, MultipartHttpServletRequest request) throws IOException {
+//
+//        Result edit = attachmentService.edit(id, request);
+//        return edit;
+//    }
 
     @GetMapping("/download/{id}")
     public void download(@PathVariable Integer id, HttpServletResponse response) throws IOException {
